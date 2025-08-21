@@ -1,0 +1,9 @@
+#sample-wrap {
+    width: 1280px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+#sample-wrap > img {
+  width: 100%;
+}
