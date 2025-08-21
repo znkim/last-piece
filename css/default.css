@@ -1,5 +1,11 @@
 #sample-wrap {
-    width: 1280px;
+    width: auto;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+#mobile-wrap {
+    width: auto;
     margin: 0 auto;
     cursor: pointer;
 }
