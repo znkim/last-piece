@@ -1,4 +1,6 @@
 window.onload = function() {
+    const logoBtn = document.getElementById("logo-btn");
+    const logoTextBtn = document.getElementById("logo-text-btn");
     const projectsBtn = document.getElementById("projects-btn");
     const designerBtn = document.getElementById("designer-btn");
     const exhibitionBtn = document.getElementById("exhibition-btn");
@@ -6,17 +8,27 @@ window.onload = function() {
     const instagramBtn = document.getElementById("instagram-btn");
     const locationBtn = document.getElementById("location-btn");
 
+    let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    let relativePath = isMobile ? "/mobile/" : "/web/";
+
+    logoBtn.onclick = () => {
+        window.location.href = "/";
+    }
+    logoTextBtn.onclick = () => {
+        window.location.href = "/";
+    }
+
     projectsBtn.onclick = () => {
-        window.location.href = "./projects.html";
+        window.location.href = relativePath + "projects.html";
     }
     designerBtn.onclick = () => {
-        window.location.href = "./designer.html";
+        window.location.href = relativePath + "designer.html";
     }
     exhibitionBtn.onclick = () => {
-        window.location.href = "./exhibition.html";
+        window.location.href = relativePath + "exhibition.html";
     }
     sponsorBtn.onclick = () => {
-        window.location.href = "./sponsor.html";
+        window.location.href = relativePath + "sponsor.html";
     }
     instagramBtn.onclick = () => {
         window.open("https://www.instagram.com/designkey_pizza/", "_blank");

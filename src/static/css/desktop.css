@@ -45,6 +45,36 @@ div.page {
     justify-content: center;
 }
 
+div.projects-page {
+    height: 1080px;
+    background-color: var(--color-pice-ivory);
+}
+
+div.designers-page {
+    height: 1080px;
+    background-color: var(--color-pice-ivory);
+}
+
+div.exhibition-page {
+    height: 1080px;
+    background-color: var(--color-pice-ivory);
+}
+
+div.sponsors-page {
+    height: 1080px;
+    background-color: var(--color-pice-ivory);
+}
+
+div.projects-page {
+    height: 1080px;
+    background-color: var(--color-pice-ivory);
+}
+
+div.projects-page {
+    height: 1080px;
+    background-color: var(--color-pice-ivory);
+}
+
 div.first-page {
     height: 1080px;
     background-color: var(--color-last-red);
