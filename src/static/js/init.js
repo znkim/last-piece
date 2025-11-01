@@ -1,6 +1,6 @@
-const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-const BASE_URL = new URL('.', import.meta.url).pathname
+const ROOT = new URL('.', location).pathname;
+let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
 if (isMobile) {
   console.log("Redirecting to mobile version");
-  window.location.href = BASE_URL + "/mobile";
+  window.location.href = ROOT + "/mobile";
 }
