@@ -1,3 +1,4 @@
+const BASE_URL = new URL('.', import.meta.url).pathname
 window.onload = function() {
     const logoBtn = document.getElementById("logo-btn");
     const logoTextBtn = document.getElementById("logo-text-btn");
@@ -9,13 +10,13 @@ window.onload = function() {
     const locationBtn = document.getElementById("location-btn");
 
     let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-    let relativePath = isMobile ? "/mobile/" : "/web/";
+    let relativePath = isMobile ? BASE_URL + "/mobile/" : BASE_URL + "/web/";
 
     logoBtn.onclick = () => {
-        window.location.href = "/";
+        window.location.href = BASE_URL;
     }
     logoTextBtn.onclick = () => {
-        window.location.href = "/";
+        window.location.href = BASE_URL;
     }
 
     projectsBtn.onclick = () => {
