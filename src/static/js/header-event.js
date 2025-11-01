@@ -1,4 +1,3 @@
-const BASE_URL = new URL('.', import.meta.url).pathname
 window.onload = function() {
     const ROOT = new URL('.', location).pathname;
     let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
