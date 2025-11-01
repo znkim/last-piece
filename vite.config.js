@@ -1,13 +1,21 @@
 import { defineConfig } from 'vite'
-
-const isUserOrOrgPage = true
-const repoName = 'last-piece'
+import { resolve } from 'path'
 
 export default defineConfig({
-    base: isUserOrOrgPage ? './' : `/${repoName}/`,
+    base: './',
     build: {
-        outDir: 'docs',     // GitHub Pages에서 사용할 폴더
+        outDir: 'docs',
         assetsDir: 'assets',
-        emptyOutDir: true,  // docs 비우고 다시 빌드
+        emptyOutDir: true,
+        rollupOptions: {
+            input: {
+                index: resolve(__dirname, 'index.html'),
+                mobile: resolve(__dirname, 'mobile.html'),
+                designer: resolve(__dirname, 'web/designer.html'),
+                exhibition: resolve(__dirname, 'web/exhibition.html'),
+                projects: resolve(__dirname, 'web/projects.html'),
+                sponsor: resolve(__dirname, 'web/sponsor.html'),
+            }
+        }
     },
 })

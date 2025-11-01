@@ -1,5 +1,9 @@
 const BASE_URL = new URL('.', import.meta.url).pathname
 window.onload = function() {
+    const ROOT = new URL('.', location).pathname;
+    let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
+
     const logoBtn = document.getElementById("logo-btn");
     const logoTextBtn = document.getElementById("logo-text-btn");
     const projectsBtn = document.getElementById("projects-btn");
@@ -9,28 +13,26 @@ window.onload = function() {
     const instagramBtn = document.getElementById("instagram-btn");
     const locationBtn = document.getElementById("location-btn");
 
-    let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-    let relativePath = isMobile ? BASE_URL + "/mobile/" : BASE_URL + "/web/";
-
     logoBtn.onclick = () => {
-        window.location.href = BASE_URL;
+        window.location.href = ROOT;
     }
     logoTextBtn.onclick = () => {
-        window.location.href = BASE_URL;
+        window.location.href = ROOT;
     }
 
     projectsBtn.onclick = () => {
-        window.location.href = relativePath + "projects.html";
+        window.location.href = ROOT + relativePath + "projects.html";
     }
     designerBtn.onclick = () => {
-        window.location.href = relativePath + "designer.html";
+        window.location.href = ROOT + relativePath + "designer.html";
     }
     exhibitionBtn.onclick = () => {
-        window.location.href = relativePath + "exhibition.html";
+        window.location.href = ROOT + relativePath + "exhibition.html";
     }
     sponsorBtn.onclick = () => {
-        window.location.href = relativePath + "sponsor.html";
+        window.location.href = ROOT + relativePath + "sponsor.html";
     }
+
     instagramBtn.onclick = () => {
         window.open("https://www.instagram.com/designkey_pizza/", "_blank");
     }
