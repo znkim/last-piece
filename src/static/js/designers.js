@@ -18,7 +18,7 @@ const loadDesigners = () => {
 
         const imageTag = document.createElement("img");
         const root = getRootPath();
-        imageTag.src = root + `public/profiles/${name}.png`;
+        imageTag.src = root + `profiles/${name}.png`;
         imageTag.alt = name;
         imageDiv.appendChild(imageTag);
 
