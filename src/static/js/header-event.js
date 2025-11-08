@@ -1,6 +1,17 @@
+const getRootPath = () => {
+    const url = new URL(window.location.href);
+    const root = url.origin;
+    const splitPath = url.pathname.split('/');
+    const firstPath = splitPath[1];
+    if (firstPath !== '' && firstPath !== 'mobile' && firstPath !== 'web') {
+        return root + '/' + firstPath + '/';
+    }
+    return root + '/';
+}
+
 window.onload = function() {
-    const ROOT = new URL('/', location).pathname;
-    console.log(ROOT);
+    //const ROOT = new URL('/', location).pathname;
+    const ROOT = getRootPath();
     let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
     let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
 
