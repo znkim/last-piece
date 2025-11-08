@@ -1,3 +1,5 @@
+import {getRootPath} from "./header-event.js";
+
 const projects = [
     {
         id: 1,

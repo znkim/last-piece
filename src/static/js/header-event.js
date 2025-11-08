@@ -1,4 +1,4 @@
-const getRootPath = () => {
+export const getRootPath = () => {
     const url = new URL(window.location.href);
     const root = url.origin;
     const splitPath = url.pathname.split('/');
