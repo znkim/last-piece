@@ -59,8 +59,8 @@ const loadProjects = () => {
                         <div class="project-frame">
                             <h4>UX/UI</h4>
                             <div class="project-image"></div>
-                            <h2>호돌이 테스트</h2>
-                            <p>호돌이</p>
+                            <h2>홍길동 테스트</h2>
+                            <p>홍길동</p>
                         </div>
                     </li>
          */
