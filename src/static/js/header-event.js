@@ -1,5 +1,6 @@
 window.onload = function() {
-    const ROOT = new URL('.', location).pathname;
+    const ROOT = new URL('/', location).pathname;
+    console.log(ROOT);
     let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
     let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
 
@@ -35,7 +36,9 @@ window.onload = function() {
     instagramBtn.onclick = () => {
         window.open("https://www.instagram.com/designkey_pizza/", "_blank");
     }
-    locationBtn.onclick = () => {
-        window.open("https://naver.me/FeXRTU5Q", "_blank");
+    if (locationBtn) {
+        locationBtn.onclick = () => {
+            window.open("https://naver.me/FeXRTU5Q", "_blank");
+        }
     }
 }
