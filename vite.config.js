@@ -15,6 +15,8 @@ export default defineConfig({
                 exhibition: resolve(__dirname, 'web/exhibition.html'),
                 projects: resolve(__dirname, 'web/projects.html'),
                 sponsor: resolve(__dirname, 'web/sponsor.html'),
+                deContents: resolve(__dirname, 'web/de-contents.html'),
+                prContents: resolve(__dirname, 'web/pr-contents.html'),
             }
         }
     },
