@@ -59,7 +59,6 @@
             display: inline-block;
             float: left;
             z-index: 0;
-            overflow: hidden;
         }
         .de-contents-main > div {
             margin-top: 308px;
@@ -216,26 +215,24 @@
         }
     </style>
     <main>
-        <div class="page custom-page" style="padding-top: 80px;">
-            <div class="content" style="height: calc(100vh / var(--page-scale)); display: block" >
-                <div class="de-contents-left-menu">
+        <div class="page custom-page">
+            <div class="content" style="display: block" >
+                <div class="de-contents-left-menu" style="padding-top: 80px; height: calc(100vh / var(--page-scale) - 162px); min-height: 920px">
                     <div class="de-title">
-                        <h1 id="designer-name">홍길동</h1>
-                        <h2 id="designer-english-name">hodolyee</h2>
+                        <h1 id="designer-name"></h1>
+                        <h2 id="designer-english-name"></h2>
                         <div class="de-image-zone">
                             <img id="designer-image"/>
                         </div>
                         <div class="de-detail">
-                        <h3 id="designer-email"><span>E-Mail</span> hodolyee@gmail.com</h3>
-                        <h3 id="designer-sns"><span>SNS</span> @hodolyee</h3>
+                        <h3 id="designer-email"><span>E-Mail</span></h3>
+                        <h3 id="designer-sns"><span>SNS</span></h3>
                         <p id="designer-description">
-                            모든 국민은 인간다운 생활을 할 권리를 가진다. 모든 국민은 능력에 따라 균등하게 교육을 받을 권리를 가진다. 언론·출판은 타인의 명예나 권리 또는 공중도덕이나 사회윤리를 침해하여서는 아니된다. 언론·출판이 타인의 명예나 권리를 침해한 때에는 피해자는 이에 대한 피해의 배상을 청구할 수 있다.
-                            <br>여덟줄까지 입력 가능합니다.
                         </p>
                         </div>
                     </div>
                 </div>
-                <div class="de-contents-main">
+                <div class="de-contents-main" style="padding-top: 80px; height: calc(100vh / var(--page-scale) - 162px); min-height: 920px">
                     <div>
                         <h2>Project</h2>
                         <h3 id="project-name">hodolyee</h3>

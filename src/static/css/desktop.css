@@ -189,6 +189,16 @@ body {
     zoom: calc(var(--page-scale));
 }
 
+@media (max-width: 1024px) {
+    :root {
+        --page-scale: calc(1024px / 1920px);
+    }
+
+    body {
+        zoom: calc(var(--page-scale));
+    }
+}
+
 @keyframes marquee {
     from {
         transform: translateX(0%);
