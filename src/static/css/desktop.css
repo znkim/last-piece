@@ -181,6 +181,14 @@ div.slide > div.track {
     filter: brightness(1.1);
 }
 
+
+:root {
+    --page-scale: calc(100vw / 1920px);
+}
+body {
+    zoom: calc(var(--page-scale));
+}
+
 @keyframes marquee {
     from {
         transform: translateX(0%);
@@ -205,26 +213,3 @@ div.slide > div.track {
     }
 }
 
-
-
-
-
-:root {
-    /*--page-scale: 1;*/
-    --page-scale: calc(100vw / 1920px);
-}
-body {
-    zoom: calc(var(--page-scale));
-}
-
-/* 1920px 이하일 때 */
-/*
-@media (max-width: 1920px) {
-    :root {
-        --page-scale: calc(100vw / 1920px);
-    }
-
-    body {
-        zoom: calc(var(--page-scale));
-    }
-}*/

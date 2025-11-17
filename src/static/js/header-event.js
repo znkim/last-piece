@@ -15,14 +15,29 @@ export const getRootPath = (surfix) => {
 }
 
 const setHeaderButtonEvents = () => {
-//const ROOT = new URL('/', location).pathname;
     const root = getRootPath();
     let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
     let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
 
+    const hamburgerBtn = document.getElementById("hamburger-menu-btn");
+    const navMenu = document.querySelector("div.nav-menu");
+    if (hamburgerBtn) {
+        hamburgerBtn.onclick = () => {
+            const body = document.body;
+            //const navMenu = document.getElementById("nav-menu");
+            if (navMenu.style.display === "block") {
+                navMenu.style.display = "none";
+                body.style.position = "static";
+            } else {
+                navMenu.style.display = "block";
+                body.style.position = "fixed";
+            }
+        }
+    }
+
     const logoBtn = document.getElementById("logo-btn");
     const logoTextBtn = document.getElementById("logo-text-btn");
-    const projectsBtn = document.getElementById("projects-btn");
+    const projectsBtn = document.getElementById("project-btn");
     const designerBtn = document.getElementById("designer-btn");
     const exhibitionBtn = document.getElementById("exhibition-btn");
     const sponsorBtn = document.getElementById("sponsor-btn");
@@ -37,7 +52,7 @@ const setHeaderButtonEvents = () => {
     }
 
     projectsBtn.onclick = () => {
-        window.location.href = root + relativePath + "projects.html";
+        window.location.href = root + relativePath + "project.html";
     }
     designerBtn.onclick = () => {
         window.location.href = root + relativePath + "designer.html";
@@ -49,8 +64,10 @@ const setHeaderButtonEvents = () => {
         window.location.href = root + relativePath + "sponsor.html";
     }
 
-    instagramBtn.onclick = () => {
-        window.open("https://www.instagram.com/designkey_pizza/", "_blank");
+    if (instagramBtn) {
+        instagramBtn.onclick = () => {
+            window.open("https://www.instagram.com/designkey_pizza/", "_blank");
+        }
     }
     if (locationBtn) {
         locationBtn.onclick = () => {
