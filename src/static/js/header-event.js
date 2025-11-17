@@ -67,8 +67,6 @@ const setHeaderAutoHide = () => {
         const currentY = window.scrollY;
 
         // 특정 지점 넘으면 absolute → fixed 전환
-
-
         if (currentY > lastScrollY) {
             header.classList.add("hide");
         } else {

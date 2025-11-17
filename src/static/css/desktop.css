@@ -204,3 +204,25 @@ div.slide > div.track {
         transform: translateY(0);
     }
 }
+
+
+
+
+
+:root {
+    --page-scale: 1;
+}
+body {
+    zoom: calc(var(--page-scale));
+}
+
+/* 1920px 이하일 때 */
+@media (max-width: 1920px) {
+    :root {
+        --page-scale: calc(100vw / 1920px);
+    }
+
+    body {
+        zoom: calc(var(--page-scale));
+    }
+}

@@ -57,7 +57,7 @@
                 //height: 100%;
                 display: inline-block;
                 float: left;
-                height: calc(100vh - 80px);
+                height: calc(100vh / var(--page-scale) - 80px);
                 overflow-y: scroll;
                 overflow-x: hidden;
             }
@@ -166,7 +166,7 @@
                 right: 40px;
             }
         </style>
-        <div class="page custom-page" style="padding-top: 80px; height: calc(100vh - 80px);">
+        <div class="page custom-page" style="padding-top: 80px; height: calc(100vh / var(--page-scale) - 80px);">
             <div class="content" style="height: 100%; display: block" >
                 <div class="pr-contents-left-menu">
                     <div class="pr-title">
