@@ -1,4 +1,6 @@
-let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+import {getRootPath} from "./header-event.js";
+
+let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
 if (isMobile) {
   console.log("Redirecting to mobile version");
   const ROOT = getRootPath();

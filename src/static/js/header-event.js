@@ -17,7 +17,7 @@ export const getRootPath = (surfix) => {
 const setHeaderButtonEvents = () => {
 //const ROOT = new URL('/', location).pathname;
     const root = getRootPath();
-    let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
     let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
 
     const logoBtn = document.getElementById("logo-btn");

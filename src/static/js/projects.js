@@ -51,7 +51,7 @@ const loadProjects = () => {
 
         projectDiv.addEventListener("click", () => {
             const ROOT = getRootPath();
-            let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+            let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
             let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
             window.location.href = ROOT + relativePath + "pr-contents.html?projectId=" + encodeURIComponent(project.projectId);
         });

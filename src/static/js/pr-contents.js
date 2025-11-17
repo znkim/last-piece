@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
     const ROOT = getRootPath();
-    let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
     let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
     const prevPage = document.getElementById("prev-page");
     prevPage.addEventListener("click", () => {

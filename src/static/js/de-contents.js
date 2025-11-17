@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function(){
     //click
     projectThumbnailTag.addEventListener("click", () => {
         console.log("click project thumbnail");
-        let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+        let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
         let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
         window.location.href = root + relativePath + "pr-contents.html?projectId=" + encodeURIComponent(project.projectId);
     });

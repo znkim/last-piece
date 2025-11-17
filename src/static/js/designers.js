@@ -36,7 +36,7 @@ const loadDesigners = () => {
 
         designerDiv.addEventListener("click", () => {
             const root = getRootPath();
-            let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+            let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
             let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
             window.location.href = root + relativePath + "de-contents.html?id=" + encodeURIComponent(designer.id);
         });
