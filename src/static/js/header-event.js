@@ -1,4 +1,4 @@
-export const getRootPath = () => {
+export const getRootPath = (surfix) => {
     const url = new URL(window.location.href);
     const root = url.origin;
     const splitPath = url.pathname.split('/');
@@ -6,12 +6,17 @@ export const getRootPath = () => {
     if (firstPath !== '' && firstPath !== 'mobile' && firstPath !== 'web') {
         return root + '/' + firstPath + '/';
     }
-    return root + '/';
+    
+    let result = root + '/';
+    if (surfix) {
+        result += surfix + '/';
+    }
+    return result;
 }
 
-window.onload = function() {
-    //const ROOT = new URL('/', location).pathname;
-    const ROOT = getRootPath();
+const setHeaderButtonEvents = () => {
+//const ROOT = new URL('/', location).pathname;
+    const root = getRootPath();
     let isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
     let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
 
@@ -25,23 +30,23 @@ window.onload = function() {
     const locationBtn = document.getElementById("location-btn");
 
     logoBtn.onclick = () => {
-        window.location.href = ROOT;
+        window.location.href = root;
     }
     logoTextBtn.onclick = () => {
-        window.location.href = ROOT;
+        window.location.href = root;
     }
 
     projectsBtn.onclick = () => {
-        window.location.href = ROOT + relativePath + "projects.html";
+        window.location.href = root + relativePath + "projects.html";
     }
     designerBtn.onclick = () => {
-        window.location.href = ROOT + relativePath + "designer.html";
+        window.location.href = root + relativePath + "designer.html";
     }
     exhibitionBtn.onclick = () => {
-        window.location.href = ROOT + relativePath + "exhibition.html";
+        //window.location.href = ROOT + relativePath + "exhibition.html";
     }
     sponsorBtn.onclick = () => {
-        window.location.href = ROOT + relativePath + "sponsor.html";
+        window.location.href = root + relativePath + "sponsor.html";
     }
 
     instagramBtn.onclick = () => {
@@ -52,4 +57,37 @@ window.onload = function() {
             window.open("https://naver.me/FeXRTU5Q", "_blank");
         }
     }
+}
+
+const setHeaderAutoHide = () => {
+    const header = document.querySelector("header");
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener("scroll", () => {
+        const currentY = window.scrollY;
+
+        // 특정 지점 넘으면 absolute → fixed 전환
+
+
+        if (currentY > lastScrollY) {
+            header.classList.add("hide");
+        } else {
+            if (currentY > 80) {
+                header.classList.add("fixed");
+                // 아래로 스크롤 중 → 숨김
+            } else if (currentY < 80) {
+                header.classList.add("fixed");
+            } else {
+                header.classList.remove("fixed");
+            }
+            header.classList.remove("hide");
+        }
+
+        lastScrollY = currentY;
+    });
+}
+
+window.onload = function() {
+    setHeaderButtonEvents();
+    setHeaderAutoHide();
 }
