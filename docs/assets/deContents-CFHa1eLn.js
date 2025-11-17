@@ -1,1 +1,0 @@
-import"./header-event-Btv4milI.js";/* empty css                */document.addEventListener("DOMContentLoaded",function(){const n=new URL(window.location.href).searchParams.get("name");console.log(n)});
