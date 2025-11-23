@@ -29,7 +29,7 @@ const loadProjects = () => {
         typeH4.textContent = project.type;
         const imageDiv = document.createElement("div");
         imageDiv.className = "project-image";
-        imageDiv.style = `background-image : url(/projects/${project.thumbnailUrl});background-size: 302px 302px;background-position: 0px 0px;`;
+        imageDiv.style = `background-image : url(/projects/${project.thumbnailUrl});`;
         const titleH2 = document.createElement("h2");
         titleH2.textContent = project.title;
 

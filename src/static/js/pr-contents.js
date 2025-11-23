@@ -4,7 +4,11 @@ import {getRootPath} from "./header-event.js";
 document.addEventListener("DOMContentLoaded", function(){
     const root = getRootPath();
     const url = new URL(window.location.href);
-    const projectId = parseInt(url.searchParams.get("projectId"));
+    let projectId = parseInt(url.searchParams.get("projectId"));
+
+    if (projectId === null || isNaN(projectId)) {
+        projectId = 1;
+    }
 
     const project = db.getProjectById(projectId);
     console.log(project);
@@ -55,15 +59,17 @@ document.addEventListener("DOMContentLoaded", function(){
             // 유튜브 공유 링크를 임베드 링크로 변환
             videoElement.src = videoUrl;
             videoElement.width = "100%";
-            videoElement.height = "800px";
+            let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+            if (isMobile) {
+                videoElement.height = "250px";
+            } else {
+                videoElement.height = "800px";
+            }
             videoElement.title = "YouTube video player";
             videoElement.frameBorder = "0";
             videoElement.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
             videoElement.allowFullscreen = true;
             contentDiv.appendChild(videoElement);
-
-
-
         }
 
 

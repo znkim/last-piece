@@ -2,7 +2,10 @@ header {
     position: absolute;
     top: 0;
 }
-
+div.header-content {
+    z-index: 15;
+    position: relative;
+}
 #hamburger-menu-btn {
     position: absolute;
     top: 28px;
@@ -10,31 +13,48 @@ header {
     cursor: pointer;
 }
 .nav-menu {
-    background: rgba(0, 0, 0, 0.90);
-    height: calc(100vh);
+    z-index: 10;
     position: fixed;
     left: 0;
     top: 80px;
+    right: 0;
+    bottom: 0;
     width: 100%;
     display: none;
+    align-items: center;
+    justify-content: start;
+    background: rgba(0, 0, 0, 0.90);
 }
 .nav-menu > * {
     margin-left: 40px;
-    margin-top: 100px;
+    /*margin-top: 100px;*/
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
 
+main {
+    margin: 0 auto;
+}
+#first-page {
+    padding-top: 80px;
+}
+div.headline {
+    margin-left: 24px;
+}
 div.content {
     margin: 0 auto;
-    display: inline-block;
+    display: block;
 }
 footer {
-
+    background-color: var(--color-black);
 }
 .page {
-    min-height: 600px;
+    /*min-height: 600px;*/
     background-color: var(--color-pice-ivory);
+    height: fit-content;
+    display: block;
+    position: relative;
+    /*padding-top: 80px;*/
 }
 
 div.slide {

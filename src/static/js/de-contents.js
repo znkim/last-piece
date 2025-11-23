@@ -4,11 +4,21 @@ import {getRootPath} from "./header-event.js";
 document.addEventListener("DOMContentLoaded", function(){
     const root = getRootPath();
     const url = new URL(window.location.href);
-    const id = parseInt(url.searchParams.get("id"));
-    console.log(id);
+    let id = parseInt(url.searchParams.get("id"));
 
-    const designer = db.getDesignerById(id);
+    const name = url.searchParams.get("name");
+    let designer;
+    if (name !== null) {
+        console.log(name);
+        designer = db.getDesignerByName(name);
+    } else {
+        if (id === null || isNaN(id)) {
+            id = 1;
+        }
+        designer = db.getDesignerById(id);
+    }
     console.log(designer);
+
     const nameTag = document.getElementById("designer-name");
     nameTag.textContent = designer.name;
     const engNameTag = document.getElementById("designer-english-name");
@@ -24,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function(){
     const profileUrl = root + designer.profileUrl;
     const profileImageTag = document.getElementById("designer-image");
     profileImageTag.src = profileUrl;
-
 
 
     const projectId = designer.projectId;

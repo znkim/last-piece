@@ -25,11 +25,11 @@ const setHeaderButtonEvents = () => {
         hamburgerBtn.onclick = () => {
             const body = document.body;
             //const navMenu = document.getElementById("nav-menu");
-            if (navMenu.style.display === "block") {
+            if (navMenu.style.display === "flex") {
                 navMenu.style.display = "none";
                 body.style.position = "static";
             } else {
-                navMenu.style.display = "block";
+                navMenu.style.display = "flex";
                 body.style.position = "fixed";
             }
         }
