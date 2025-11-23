@@ -15,13 +15,15 @@ export default defineConfig({
                 projects: resolve(__dirname, 'web/project.html'),
                 sponsor: resolve(__dirname, 'web/sponsor.html'),
                 deContents: resolve(__dirname, 'web/de-contents.html'),
+                prContents: resolve(__dirname, 'web/pr-contents.html'),
 
                 mobile: resolve(__dirname, 'mobile.html'),
-                prContents: resolve(__dirname, 'web/pr-contents.html'),
                 designerMobile: resolve(__dirname, 'mobile/designer.html'),
                 exhibitionMobile: resolve(__dirname, 'mobile/exhibition.html'),
                 projectsMobile: resolve(__dirname, 'mobile/project.html'),
                 sponsorMobile: resolve(__dirname, 'mobile/sponsor.html'),
+                deContentsMobile: resolve(__dirname, 'mobile/de-contents.html'),
+                prContentsMobile: resolve(__dirname, 'mobile/pr-contents.html'),
             }
         }
     },
