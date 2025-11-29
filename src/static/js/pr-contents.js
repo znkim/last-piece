@@ -115,41 +115,63 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 const scrollToTop = () => {
+    let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+    console.log("scrollToTop initialized");
+    const wrapper = document.getElementById("pr-contents-scroll");
     const scrollBtn = document.getElementById("scroll-to-top");
     if (!scrollBtn) return;
-    scrollBtn.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
 
     let footer = document.getElementById("footer");
     if (footer == null) {
         footer = document.querySelector("footer");
     }
 
-    let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+    let defaultBottom; // 기본 bottom(px)
+    if (!isMobile) {
+        defaultBottom = 40;
 
+        scrollBtn.addEventListener("click", () => {
+            wrapper.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
 
-    let defaultBottom = 40; // 기본 bottom(px)
-    if (isMobile) {
+        wrapper.addEventListener("scroll", () => {
+            const windowHeight = window.innerHeight; // wrapper height 고려
+            const footerTop = footer.getBoundingClientRect().top;
+            // footer가 화면에 닿기 시작하면
+            if (footerTop < windowHeight) {
+                const offset = windowHeight - footerTop;
+                console.log(offset);
+                scrollBtn.style.bottom = `${defaultBottom + offset}px`;
+            } else {
+                scrollBtn.style.bottom = `${defaultBottom}px`;
+            }
+        });
+    } else {
         defaultBottom = 20;
+        scrollBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        window.addEventListener("scroll", () => {
+            const windowHeight = window.innerHeight;
+            const footerTop = footer.getBoundingClientRect().top;
+
+            // footer가 화면에 닿기 시작하면
+            if (footerTop < windowHeight) {
+                const offset = windowHeight - footerTop;
+                console.log(offset);
+                scrollBtn.style.bottom = `${defaultBottom + offset}px`;
+            } else {
+                scrollBtn.style.bottom = `${defaultBottom}px`;
+            }
+        });
     }
-
-    window.addEventListener("scroll", () => {
-        const windowHeight = window.innerHeight;
-        const footerTop = footer.getBoundingClientRect().top;
-
-        // footer가 화면에 닿기 시작하면
-        if (footerTop < windowHeight) {
-            const offset = windowHeight - footerTop;
-            console.log(offset);
-            scrollBtn.style.bottom = `${defaultBottom + offset}px`;
-        } else {
-            scrollBtn.style.bottom = `${defaultBottom}px`;
-        }
-    });
 }
 
 document.addEventListener("DOMContentLoaded", function(){
