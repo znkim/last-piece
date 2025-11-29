@@ -37,13 +37,14 @@ html {
 }
 body {
     /*overflow-x: hidden;*/
-    background: var(--color-pice-ivory);
+    background: var(--color-black);
 }
 
 main {
     overflow-x: hidden;
     overflow-y: auto;
     margin: 0 auto;
+    background: var(--color-pice-ivory);
 }
 
 footer {
@@ -222,4 +223,17 @@ body {
         transform: translateY(0);
     }
 }
-
+#scroll-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 140px;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    z-index: 1000;
+    scale: 0.99;
+}
+#scroll-to-top:hover {
+    cursor: pointer;
+}

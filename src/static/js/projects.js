@@ -68,8 +68,18 @@ const scrollToTop = () => {
         });
     });
 
-    const footer = document.getElementById("footer");
-    const defaultBottom = 40; // 기본 bottom(px)
+    let footer = document.getElementById("footer");
+    if (footer == null) {
+        footer = document.querySelector("footer");
+    }
+
+    let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+
+
+    let defaultBottom = 40; // 기본 bottom(px)
+    if (isMobile) {
+        defaultBottom = 20;
+    }
 
     window.addEventListener("scroll", () => {
         const windowHeight = window.innerHeight;
@@ -78,6 +88,7 @@ const scrollToTop = () => {
         // footer가 화면에 닿기 시작하면
         if (footerTop < windowHeight) {
             const offset = windowHeight - footerTop;
+            console.log(offset);
             scrollBtn.style.bottom = `${defaultBottom + offset}px`;
         } else {
             scrollBtn.style.bottom = `${defaultBottom}px`;

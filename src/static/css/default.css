@@ -83,18 +83,5 @@ body{
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
-}
-
-#scroll-to-top {
-    position: fixed;
-    bottom: 40px;
-    right: 140px;
-    border-radius: 25px;
-    text-align: center;
-    line-height: 50px;
-    font-size: 24px;
-    z-index: 1000;
-}
-#scroll-to-top:hover {
-    cursor: pointer;
+    overflow-x: hidden;
 }

@@ -29,6 +29,19 @@ document.addEventListener("DOMContentLoaded", function(){
     const snsElement = document.getElementById("designer-sns");
     snsElement.innerHTML = `<span>SNS</span> ${designerData.sns}`;
 
+    const designer2Id = project.designerId[1];
+    if (designer2Id) {
+        const designer2Data = db.getDesignerById(designer2Id);
+        const designer2Element = document.getElementById("designer-name2");
+        designer2Element.textContent = designer2Data.name;
+        const designerEnglish2Element = document.getElementById("designer-english-name2");
+        designerEnglish2Element.textContent = designer2Data.englishName;
+        const email2Element = document.getElementById("designer-email2");
+        email2Element.innerHTML = `<span>E-MAIL</span> ${designer2Data.email}`;
+        const sns2Element = document.getElementById("designer-sns2");
+        sns2Element.innerHTML = `<span>SNS</span> ${designer2Data.sns}`;
+    }
+
     const contentListElement = document.getElementById("pr-contents-wrap");
     project.contents.forEach(content => {
         const contentDiv = document.createElement("div");
@@ -102,29 +115,36 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 const scrollToTop = () => {
-    console.log("scrollToTop initialized");
-    const wrapper = document.getElementById("pr-contents-scroll");
     const scrollBtn = document.getElementById("scroll-to-top");
     if (!scrollBtn) return;
     scrollBtn.addEventListener("click", () => {
-        wrapper.scrollTo({
+        window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
     });
 
-    const footer = document.querySelector(".contents-footer");
-    const defaultBottom = 40; // 기본 bottom(px)
+    let footer = document.getElementById("footer");
+    if (footer == null) {
+        footer = document.querySelector("footer");
+    }
 
-    wrapper.addEventListener("scroll", () => {
-        const windowHeight = window.innerHeight; // wrapper height 고려
+    let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+
+
+    let defaultBottom = 40; // 기본 bottom(px)
+    if (isMobile) {
+        defaultBottom = 20;
+    }
+
+    window.addEventListener("scroll", () => {
+        const windowHeight = window.innerHeight;
         const footerTop = footer.getBoundingClientRect().top;
-
-        console.log("footerTop:", footerTop, "windowHeight:", windowHeight);
 
         // footer가 화면에 닿기 시작하면
         if (footerTop < windowHeight) {
             const offset = windowHeight - footerTop;
+            console.log(offset);
             scrollBtn.style.bottom = `${defaultBottom + offset}px`;
         } else {
             scrollBtn.style.bottom = `${defaultBottom}px`;

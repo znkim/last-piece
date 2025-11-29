@@ -58,7 +58,7 @@ const setHeaderButtonEvents = () => {
         window.location.href = root + relativePath + "designer.html";
     }
     exhibitionBtn.onclick = () => {
-        //window.location.href = ROOT + relativePath + "exhibition.html";
+        window.location.href = root + relativePath + "exhibition.html";
     }
     sponsorBtn.onclick = () => {
         window.location.href = root + relativePath + "sponsor.html";
@@ -79,7 +79,6 @@ const setHeaderButtonEvents = () => {
 const setHeaderAutoHide = () => {
     const header = document.querySelector("header");
     let lastScrollY = window.scrollY;
-
     window.addEventListener("scroll", () => {
         const currentY = window.scrollY;
 
