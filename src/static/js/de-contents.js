@@ -1,5 +1,5 @@
 import * as db from "./database.js";
-import {getRootPath} from "./header-event.js";
+import {getRootPath, resolvePath} from "./header-event.js";
 
 document.addEventListener("DOMContentLoaded", function(){
     const root = getRootPath();
@@ -26,12 +26,17 @@ document.addEventListener("DOMContentLoaded", function(){
     const snsTag = document.getElementById("designer-sns");
     //snsTag.textContent = designer.sns;
     snsTag.innerHTML = `<span>SNS</span>${designer.sns}`;
+    if (designer.sns === "" || designer.sns === null) {
+        snsTag.style.display = "none";
+    }
     const emailTag = document.getElementById("designer-email");
     //emailTag.textContent = designer.email;
-    emailTag.innerHTML = `<span>E-Mail</span>${designer.email}`;
+    emailTag.innerHTML = `<span>E-MAIL</span>${designer.email}`;
     const descriptionTag = document.getElementById("designer-description");
     descriptionTag.textContent = designer.description;
-    const profileUrl = root + designer.profileUrl;
+    // /profiles -> /profiles_details
+    let profileUrl = resolvePath(root, designer.profileUrl);
+    profileUrl = profileUrl.replace("/profiles", "/profiles_details");
     const profileImageTag = document.getElementById("designer-image");
     profileImageTag.src = profileUrl;
 
@@ -42,25 +47,18 @@ document.addEventListener("DOMContentLoaded", function(){
 
     const projectNameTag = document.getElementById("project-name");
     projectNameTag.textContent = project.title;
-    const thumbnailUrl = project.thumbnailUrl;
+    let thumbnailUrl = project.thumbnailUrl;
+    thumbnailUrl = resolvePath(root, thumbnailUrl);
 
-    const projectThumbnailTag = document.getElementById("thumbnail-image");
-    projectThumbnailTag.src = root + "projects/" + thumbnailUrl;
+    const projectThumbnailTag = document.getElementById("thumbnail-image"); // div
+    //projectThumbnailTag.src = root + thumbnailUrl;
     projectThumbnailTag.style = "cursor: pointer;";
+    projectThumbnailTag.style.backgroundImage = `url(${thumbnailUrl})`;
 
-    //click
     projectThumbnailTag.addEventListener("click", () => {
         console.log("click project thumbnail");
         let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
         let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
         window.location.href = root + relativePath + "pr-contents.html?projectId=" + encodeURIComponent(project.projectId);
     });
-
-
-
-
-
-
-
-    //const project
 });

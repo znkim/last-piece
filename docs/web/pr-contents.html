@@ -5,11 +5,11 @@
     <link rel="icon" type="image/svg+xml" href="../favicon-light.svg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>LAST PIECE</title>
-  <script type="module" crossorigin src="../assets/init-CqtiBfSn.js"></script>
-  <script type="module" crossorigin src="../assets/database-DzA5empu.js"></script>
-  <script type="module" crossorigin src="../assets/pr-contents-S-o6N-Fy.js"></script>
+  <script type="module" crossorigin src="../assets/init-D6Ncp5CS.js"></script>
+  <script type="module" crossorigin src="../assets/database-VJZo-Llg.js"></script>
+  <script type="module" crossorigin src="../assets/pr-contents-DxOT8Ixp.js"></script>
   <link rel="stylesheet" crossorigin href="../assets/init-D7eLNnWH.css">
-  <link rel="stylesheet" crossorigin href="../assets/desktop-C_WaUvmA.css">
+  <link rel="stylesheet" crossorigin href="../assets/desktop-BQHRU3_m.css">
 </head>
 <body>
     <header>
@@ -44,24 +44,48 @@
         <style>
             .pr-contents-left-menu {
                 width: 540px;
-                height: 100%;
+                /*height: 100%;*/
                 display: inline-block;
                 float: left;
                 position: relative;
+                height: calc(100%);
+                /*height: calc(100vh / var(--page-scale) - 80px);*/
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+            .pr-contents-left-menu::-webkit-scrollbar {
+                width: 10px;
+            }
+            .pr-contents-left-menu::-webkit-scrollbar-thumb {
+                background-color: var(--color-wine-red);
+            }
+            .pr-contents-left-menu::-webkit-scrollbar-track {
+                background-color: var(--color-grey);
             }
             .pr-contents-main {
-                background-color: var(--color-black);
+                background-color: var(--color-pice-ivory);
                 width: 1380px;
-                //height: 100%;
+                /*height: 100%;*/
+                /*height: calc(100% - 80px);*/
                 display: inline-block;
                 float: left;
                 height: calc(100vh / var(--page-scale) - 80px);
                 overflow-y: scroll;
                 overflow-x: hidden;
             }
+            .pr-contents-main::-webkit-scrollbar {
+                width: 10px;
+            }
+            .pr-contents-main::-webkit-scrollbar-thumb {
+                background-color: var(--color-wine-red);
+            }
+            .pr-contents-main::-webkit-scrollbar-track {
+                background-color: var(--color-grey);
+            }
             .pr-title {
-                margin: 0 auto;
                 margin-top: 100px;
+                margin-left: 100px;
+                margin-right: 80px;
                 width: 360px;
             }
             .pr-title > h1 {
@@ -84,16 +108,23 @@
                 text-transform: uppercase;
             }
 
-            .pr-sub-title2 {
+            /*.pr-sub-title2 {
                 bottom: 305px !important;
-            }
+            }*/
 
             .pr-sub-title {
-                position: absolute;
-                bottom: 80px;
-                left: 100px;
+                position: relative;
+                margin-left: 100px;
+                margin-top: 77px;
+                /* margin-bottom: 80px; */
                 width: 360px;
+                display: inline-block;
             }
+            .pr-sub-title.pr-sub-title2 {
+                margin-top: 55px !important;
+                margin-bottom: 80px;
+            }
+
             .pr-sub-title > h2 {
                 font-family: Pretendard, serif;
                 font-size: 24px;

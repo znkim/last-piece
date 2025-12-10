@@ -32,6 +32,20 @@ header > div {
 .header-btn:hover {
     cursor: pointer;
 }
+
+html {
+    overflow: auto;
+}
+html::-webkit-scrollbar {
+    width: 10px;
+}
+html::-webkit-scrollbar-thumb {
+    background-color: var(--color-wine-red);
+}
+html::-webkit-scrollbar-track {
+    background-color: var(--color-grey);
+}
+
 html {
     /*background: var(--color-pice-ivory);*/
 }
@@ -85,10 +99,11 @@ div.background-icon {
     top: 0;
     left: 50%;
     translate: -50% 0;
+    /*overflow: hidden;*/
 }
 div.icon-wrap {
     top: 208px;
-    right: -36px;
+    right: 0;
     position: absolute;
 }
 
@@ -134,7 +149,8 @@ div.projects-page {
 }
 
 div.first-page {
-    height: 1080px;
+    height: 1000px;
+    padding-top: 80px;
     background-color: var(--color-last-red);
 }
 
@@ -172,31 +188,33 @@ div.slide {
     color: var(--color-pice-ivory);
     background: var(--color-black);
 }
-
 div.slide > div.track {
     display: inline-block;
     animation: marquee 20s linear infinite;
+}
+div.track > svg {
+    margin-right: 23px;
 }
 
 .header-btn:hover {
     filter: brightness(1.1);
 }
 
-
 :root {
     --page-scale: calc(100vw / 1920px);
 }
+
+html, body {
+    position: relative;
+    overflow-x: hidden;
+}
 body {
-    zoom: calc(var(--page-scale));
+    zoom: var(--page-scale);
 }
 
 @media (max-width: 1024px) {
     :root {
         --page-scale: calc(1024px / 1920px);
-    }
-
-    body {
-        zoom: calc(var(--page-scale));
     }
 }
 

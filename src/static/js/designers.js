@@ -16,6 +16,7 @@ const loadDesigners = () => {
     const designers = db.getDesigners();
     designers.forEach(designer => {
         const name = designer.name;
+        const englishName = designer.englishName;
 
         const designerDiv = document.createElement("li");
         const imageDiv = document.createElement("div");
@@ -23,7 +24,7 @@ const loadDesigners = () => {
 
         const imageTag = document.createElement("img");
         const root = getRootPath();
-        imageTag.src = root + `profiles/${name}.png`;
+        imageTag.src = root + `profiles/${englishName.replaceAll(" ", "")}.png`;
         imageTag.alt = name;
         imageDiv.appendChild(imageTag);
 
@@ -68,12 +69,12 @@ const scrollToTop = () => {
 
     window.addEventListener("scroll", () => {
         const windowHeight = window.innerHeight;
-        const footerTop = footer.getBoundingClientRect().top;
+        /*const footerTop = footer.getBoundingClientRect().top;*/
+        const maximumScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const footerHeight = 120; // px
 
-        // footer가 화면에 닿기 시작하면
-        if (footerTop < windowHeight) {
-            const offset = windowHeight - footerTop;
-            console.log(offset);
+        if (window.scrollY >= maximumScroll - footerHeight) {
+            const offset = window.scrollY - (maximumScroll - footerHeight);
             scrollBtn.style.bottom = `${defaultBottom + offset}px`;
         } else {
             scrollBtn.style.bottom = `${defaultBottom}px`;

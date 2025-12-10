@@ -17,7 +17,7 @@ export default defineConfig({
                 deContents: resolve(__dirname, 'web/de-contents.html'),
                 prContents: resolve(__dirname, 'web/pr-contents.html'),
 
-                mobile: resolve(__dirname, 'mobile.html'),
+                mobile: resolve(__dirname, 'mobile/mobile.html'),
                 designerMobile: resolve(__dirname, 'mobile/designer.html'),
                 exhibitionMobile: resolve(__dirname, 'mobile/exhibition.html'),
                 projectsMobile: resolve(__dirname, 'mobile/project.html'),

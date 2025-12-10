@@ -1,10 +1,25 @@
 import * as db from "./database.js";
 import {getRootPath} from "./header-event.js";
+import {getContainDesignerByName} from "./database.js";
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", async function(){
     const root = getRootPath();
     const url = new URL(window.location.href);
     let projectId = parseInt(url.searchParams.get("projectId"));
+
+    const name = url.searchParams.get("name");
+    let designer;
+    if (name !== null) {
+        console.log(name);
+        designer = db.getContainDesignerByName(name);
+        projectId = designer.projectId;
+    } else {
+        if (projectId === null || isNaN(projectId)) {
+            projectId = 1;
+        }
+        designer = db.getDesignerById(projectId);
+    }
+    console.log(designer);
 
     if (projectId === null || isNaN(projectId)) {
         projectId = 1;
@@ -14,7 +29,8 @@ document.addEventListener("DOMContentLoaded", function(){
     console.log(project);
 
     const titleElement = document.getElementById("project-title");
-    titleElement.textContent = project.title;
+    //titleElement.textContent = project.title;
+    titleElement.innerHTML = project.title;
     const descriptionElement = document.getElementById("project-description");
     descriptionElement.textContent = project.description;
 
@@ -28,6 +44,9 @@ document.addEventListener("DOMContentLoaded", function(){
     emailElement.innerHTML = `<span>E-MAIL</span> ${designerData.email}`;
     const snsElement = document.getElementById("designer-sns");
     snsElement.innerHTML = `<span>SNS</span> ${designerData.sns}`;
+    if (designer.sns === "" || designer.sns === null) {
+        snsElement.style.display = "none";
+    }
 
     const designer2Id = project.designerId[1];
     if (designer2Id) {
@@ -43,20 +62,31 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     const contentListElement = document.getElementById("pr-contents-wrap");
-    project.contents.forEach(content => {
+    //project.contents.forEach(async content => {
+    for (const content of project.contents) {
         const contentDiv = document.createElement("div");
         contentDiv.className = "pr-content-item";
         const contentString = content.toString();
 
         if (contentString.endsWith(".png") || contentString.endsWith(".jpg") || contentString.endsWith(".jpeg") || contentString.endsWith(".gif")) {
             const imgElement = document.createElement("img");
-            imgElement.src = `${root}projects_details/${content}`;
-            imgElement.style = `width: 100%;`;
+            imgElement.src = `${root}${content}`;
+            imgElement.style = `width: 100%; display: block;`;
             contentDiv.appendChild(imgElement);
-        } else if (contentString.indexOf("youtube.com") !== -1 || contentString.indexOf("youtu.be") !== -1) {
+
+            console.log(imgElement.src);
+
+        //} else if (contentString.indexOf("youtube.com") !== -1 || contentString.indexOf("youtu.be") !== -1) {
+        } else if (contentString.endsWith("text") !== -1) {
+            let videoUrl = await fetch(`${root}${content}`).then(response => response.text()).then(text => {
+                return text.trim();
+            });
+
+            console.log(videoUrl);
+
             // youTube link 처리
+            //let videoUrl = contentString;
             const videoElement = document.createElement("iframe");
-            let videoUrl = contentString;
 
             // https://youtu.be/MDX8fylSisU
             if (videoUrl.indexOf("youtu.be") !== -1) {
@@ -85,11 +115,8 @@ document.addEventListener("DOMContentLoaded", function(){
             contentDiv.appendChild(videoElement);
         }
 
-
-
-
         contentListElement.appendChild(contentDiv);
-    });
+    }
 
     const ROOT = getRootPath();
     let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
@@ -123,7 +150,7 @@ const scrollToTop = () => {
 
     let footer = document.getElementById("footer");
     if (footer == null) {
-        footer = document.querySelector("footer");
+        footer = document.querySelector(".contents-footer");
     }
 
     let defaultBottom; // 기본 bottom(px)
@@ -150,7 +177,7 @@ const scrollToTop = () => {
             }
         });
     } else {
-        defaultBottom = 20;
+        /*defaultBottom = 20;
         scrollBtn.addEventListener("click", () => {
             window.scrollTo({
                 top: 0,
@@ -166,6 +193,28 @@ const scrollToTop = () => {
             if (footerTop < windowHeight) {
                 const offset = windowHeight - footerTop;
                 console.log(offset);
+                scrollBtn.style.bottom = `${defaultBottom + offset}px`;
+            } else {
+                scrollBtn.style.bottom = `${defaultBottom}px`;
+            }
+        });*/
+
+        defaultBottom = 20;
+        scrollBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        window.addEventListener("scroll", () => {
+            const windowHeight = window.innerHeight;
+            /*const footerTop = footer.getBoundingClientRect().top;*/
+            const maximumScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const footerHeight = 90; // px
+
+            if (window.scrollY >= maximumScroll - footerHeight) {
+                const offset = window.scrollY - (maximumScroll - footerHeight);
                 scrollBtn.style.bottom = `${defaultBottom + offset}px`;
             } else {
                 scrollBtn.style.bottom = `${defaultBottom}px`;

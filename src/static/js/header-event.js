@@ -1,3 +1,14 @@
+function updatePageScale() {
+    let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+    if (!isMobile) {
+        const scale = window.innerWidth / 1920;
+        document.documentElement.style.setProperty('--page-scale', scale);
+        console.log(scale);
+    }
+}
+updatePageScale();
+window.addEventListener('resize', updatePageScale);
+
 export const getRootPath = (surfix) => {
     const url = new URL(window.location.href);
     const root = url.origin;
@@ -12,6 +23,13 @@ export const getRootPath = (surfix) => {
         result += surfix + '/';
     }
     return result;
+}
+
+export const resolvePath = (pathA, pathB) => {
+    if (pathB.startsWith('/')) {
+        pathB = pathB.substring(1);
+    }
+    return pathA + pathB;
 }
 
 const setHeaderButtonEvents = () => {
@@ -83,20 +101,19 @@ const setHeaderAutoHide = () => {
         const currentY = window.scrollY;
 
         // 특정 지점 넘으면 absolute → fixed 전환
-        if (currentY > lastScrollY) {
+        if (currentY > lastScrollY && window.scrollY > 80) {
             header.classList.add("hide");
         } else {
             if (currentY > 80) {
                 header.classList.add("fixed");
-                // 아래로 스크롤 중 → 숨김
             } else if (currentY < 80) {
                 header.classList.add("fixed");
             } else {
+                // 아래로 스크롤 중 → 숨김
                 header.classList.remove("fixed");
             }
             header.classList.remove("hide");
         }
-
         lastScrollY = currentY;
     });
 }

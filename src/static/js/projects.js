@@ -1,4 +1,4 @@
-import {getRootPath} from "./header-event.js";
+import {getRootPath, resolvePath} from "./header-event.js";
 import * as db from "./database.js";
 
 const clearProjects = () => {
@@ -12,16 +12,6 @@ const loadProjects = () => {
     const list = document.getElementById("projects-list");
     const projects = db.getProjects();
     projects.forEach(project => {
-        /*
-                    <li>
-                        <div class="project-frame">
-                            <h4>UX/UI</h4>
-                            <div class="project-image"></div>
-                            <h2>홍길동 테스트</h2>
-                            <p>홍길동</p>
-                        </div>
-                    </li>
-         */
         const projectDiv = document.createElement("li");
         const frameDiv = document.createElement("div");
         frameDiv.className = "project-frame";
@@ -29,9 +19,15 @@ const loadProjects = () => {
         typeH4.textContent = project.type;
         const imageDiv = document.createElement("div");
         imageDiv.className = "project-image";
-        imageDiv.style = `background-image : url(/projects/${project.thumbnailUrl});`;
+
+        let rootPath = getRootPath();
+        let thumbnailUrl = project.thumbnailUrl;
+        thumbnailUrl = thumbnailUrl.replace("/projects", "/projects_thumbnails");
+        thumbnailUrl = resolvePath(rootPath, thumbnailUrl);
+        imageDiv.style = `background-image : url(${thumbnailUrl});`;
         const titleH2 = document.createElement("h2");
-        titleH2.textContent = project.title;
+        //titleH2.textContent = project.title;
+        titleH2.innerHTML = project.title;
 
         let designerIds = project.designerId || [];
         let designerNames = designerIds.map(id => {
@@ -68,14 +64,7 @@ const scrollToTop = () => {
         });
     });
 
-    let footer = document.getElementById("footer");
-    if (footer == null) {
-        footer = document.querySelector("footer");
-    }
-
     let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
-
-
     let defaultBottom = 40; // 기본 bottom(px)
     if (isMobile) {
         defaultBottom = 20;
@@ -83,12 +72,12 @@ const scrollToTop = () => {
 
     window.addEventListener("scroll", () => {
         const windowHeight = window.innerHeight;
-        const footerTop = footer.getBoundingClientRect().top;
+        /*const footerTop = footer.getBoundingClientRect().top;*/
+        const maximumScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const footerHeight = 120; // px
 
-        // footer가 화면에 닿기 시작하면
-        if (footerTop < windowHeight) {
-            const offset = windowHeight - footerTop;
-            console.log(offset);
+        if (window.scrollY >= maximumScroll - footerHeight) {
+            const offset = window.scrollY - (maximumScroll - footerHeight);
             scrollBtn.style.bottom = `${defaultBottom + offset}px`;
         } else {
             scrollBtn.style.bottom = `${defaultBottom}px`;

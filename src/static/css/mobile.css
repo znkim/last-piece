@@ -77,9 +77,17 @@ div.slide > div.track {
     display: inline-block;
     animation: marquee 20s linear infinite;
 }
+div.track > svg {
+    margin-right: 10px;
+}
 
 :root {
     --page-scale: calc(100vw / 375px);
+}
+
+html, body {
+    position: relative;
+    overflow-x: hidden;
 }
 body {
     zoom: calc(var(--page-scale));

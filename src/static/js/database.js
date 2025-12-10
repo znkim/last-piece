@@ -19,4 +19,6 @@ export const getDesignerById = (id) => {
 export const getDesignerByName = (name) => {
     return db.designers.find(designer => designer.name === name);
 }
-
+export const getContainDesignerByName = (name) => {
+    return db.designers.find(designer => designer.name.indexOf(name) > -1);
+}
