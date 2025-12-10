@@ -59,6 +59,9 @@ document.addEventListener("DOMContentLoaded", async function(){
         email2Element.innerHTML = `<span>E-MAIL</span> ${designer2Data.email}`;
         const sns2Element = document.getElementById("designer-sns2");
         sns2Element.innerHTML = `<span>SNS</span> ${designer2Data.sns}`;
+    } else {
+        const designer2Section = document.querySelector("div.pr-sub-title2");
+        designer2Section.style.display = "none";
     }
 
     const contentListElement = document.getElementById("pr-contents-wrap");
