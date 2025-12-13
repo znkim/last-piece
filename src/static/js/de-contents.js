@@ -32,6 +32,9 @@ document.addEventListener("DOMContentLoaded", function(){
     const emailTag = document.getElementById("designer-email");
     //emailTag.textContent = designer.email;
     emailTag.innerHTML = `<span>E-MAIL</span>${designer.email}`;
+    if (designer.email === "" || designer.email === null) {
+        emailTag.style.display = "none";
+    }
     const descriptionTag = document.getElementById("designer-description");
     descriptionTag.textContent = designer.description;
     // /profiles -> /profiles_details
