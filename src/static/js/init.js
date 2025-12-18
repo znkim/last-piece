@@ -9,16 +9,18 @@ if (urlIsMobile || urlIsWeb) {
   if (urlIsWeb && isMobile) {
     window.location.href = window.location.href.replace("/web", "/mobile");
   } else if (urlIsMobile && !isMobile) {
-    window.location.href = window.location.href.replace("/mobile", "/web");
+    if (window.location.pathname.includes("mobile.html")) {
+      window.location.href = getRootPath();
+    } else {
+      window.location.href = window.location.href.replace("/mobile", "/web");
+    }
   }
 } else {
-  // root page
   if (isMobile) {
     window.location.href = getRootPath() + "mobile/mobile.html";
   } else {
     if (window.location.pathname !== "/") {
       window.location.href = getRootPath();
-      console.log("redirect to root");
     }
   }
 }

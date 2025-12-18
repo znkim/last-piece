@@ -3,7 +3,6 @@ function updatePageScale() {
     if (!isMobile) {
         const scale = window.innerWidth / 1920;
         document.documentElement.style.setProperty('--page-scale', scale);
-        console.log(scale);
     }
 }
 updatePageScale();

@@ -86,7 +86,6 @@ const scrollToTop = () => {
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-    console.log(db);
     clearProjects();
     loadProjects();
     scrollToTop();

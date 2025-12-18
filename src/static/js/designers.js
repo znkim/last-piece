@@ -1,8 +1,6 @@
 import {getRootPath} from "./header-event.js";
 import * as db from "./database.js";
 
-//const names = ["권혜원", "김기태", "김병준", "김상윤", "김성효", "김승기", "김예신", "김은지", "문상범", "박여은", "박예은", "박혜림", "석지영", "신정희", "양경현", "양유정", "윤지현", "이연지", "이찬희", "장예은", "정시운", "조주연", "채혜리", "최윤희", "최인우", "황승민", "황승헌"];
-
 const clearDesigners = () => {
     const designersList = document.getElementById("designers-list");
     while (designersList.firstChild) {

@@ -10,23 +10,22 @@ document.addEventListener("DOMContentLoaded", async function(){
     const name = url.searchParams.get("name");
     let designer;
     if (name !== null) {
-        console.log(name);
         designer = db.getContainDesignerByName(name);
         projectId = designer.projectId;
     } else {
         if (projectId === null || isNaN(projectId)) {
             projectId = 1;
         }
-        designer = db.getDesignerById(projectId);
+        let project = db.getProjectById(projectId);
+        let designerId = project?.designerId[0];
+        designer = db.getDesignerById(designerId);
     }
-    console.log(designer);
 
     if (projectId === null || isNaN(projectId)) {
         projectId = 1;
     }
 
     const project = db.getProjectById(projectId);
-    console.log(project);
 
     const titleElement = document.getElementById("project-title");
     //titleElement.textContent = project.title;
@@ -44,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async function(){
     emailElement.innerHTML = `<span>E-MAIL</span> ${designerData.email}`;
     const snsElement = document.getElementById("designer-sns");
     snsElement.innerHTML = `<span>SNS</span> ${designerData.sns}`;
-    if (designer.sns === "" || designer.sns === null) {
+    if (designerData.sns === "" || designerData.sns === null) {
         snsElement.style.display = "none";
     }
 
@@ -77,15 +76,10 @@ document.addEventListener("DOMContentLoaded", async function(){
             imgElement.style = `width: 100%; display: block;`;
             contentDiv.appendChild(imgElement);
 
-            console.log(imgElement.src);
-
-        //} else if (contentString.indexOf("youtube.com") !== -1 || contentString.indexOf("youtu.be") !== -1) {
         } else if (contentString.endsWith("text") !== -1) {
             let videoUrl = await fetch(`${root}${content}`).then(response => response.text()).then(text => {
                 return text.trim();
             });
-
-            console.log(videoUrl);
 
             // youTube link 처리
             //let videoUrl = contentString;
@@ -146,7 +140,6 @@ document.addEventListener("DOMContentLoaded", async function(){
 
 const scrollToTop = () => {
     let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
-    console.log("scrollToTop initialized");
     const wrapper = document.getElementById("pr-contents-scroll");
     const scrollBtn = document.getElementById("scroll-to-top");
     if (!scrollBtn) return;
@@ -173,7 +166,6 @@ const scrollToTop = () => {
             // footer가 화면에 닿기 시작하면
             if (footerTop < windowHeight) {
                 const offset = windowHeight - footerTop;
-                console.log(offset);
                 scrollBtn.style.bottom = `${defaultBottom + offset}px`;
             } else {
                 scrollBtn.style.bottom = `${defaultBottom}px`;
@@ -195,7 +187,6 @@ const scrollToTop = () => {
             // footer가 화면에 닿기 시작하면
             if (footerTop < windowHeight) {
                 const offset = windowHeight - footerTop;
-                console.log(offset);
                 scrollBtn.style.bottom = `${defaultBottom + offset}px`;
             } else {
                 scrollBtn.style.bottom = `${defaultBottom}px`;

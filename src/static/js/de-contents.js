@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function(){
     const name = url.searchParams.get("name");
     let designer;
     if (name !== null) {
-        console.log(name);
         designer = db.getDesignerByName(name);
     } else {
         if (id === null || isNaN(id)) {
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         designer = db.getDesignerById(id);
     }
-    console.log(designer);
 
     const nameTag = document.getElementById("designer-name");
     nameTag.textContent = designer.name;
@@ -43,13 +41,12 @@ document.addEventListener("DOMContentLoaded", function(){
     const profileImageTag = document.getElementById("designer-image");
     profileImageTag.src = profileUrl;
 
-
     const projectId = designer.projectId;
     const project = db.getProjectById(projectId);
-    console.log(project);
 
     const projectNameTag = document.getElementById("project-name");
-    projectNameTag.textContent = project.title;
+    /*projectNameTag.textContent = project.title;*/
+    projectNameTag.innerHTML = project.title;
     let thumbnailUrl = project.thumbnailUrl;
     thumbnailUrl = resolvePath(root, thumbnailUrl);
 
@@ -59,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function(){
     projectThumbnailTag.style.backgroundImage = `url(${thumbnailUrl})`;
 
     projectThumbnailTag.addEventListener("click", () => {
-        console.log("click project thumbnail");
         let isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
         let relativePath = isMobile ? "mobile/" : "web/"; // 앞에 "/" 제거!
         window.location.href = root + relativePath + "pr-contents.html?projectId=" + encodeURIComponent(project.projectId);
